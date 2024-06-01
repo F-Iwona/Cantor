@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="Cantor.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cantor"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="CurrencyItemTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding currency_code}" Width="55"/>
+                <TextBlock Text="{Binding avarage_rate}" Width="55"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Loaded="Grid_Loaded">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10, 10">
+            <TextBlock Text="CURRENCIES" Style="{ThemeResource BaseTextBlockStyle}"/>
+            <TextBlock Text="calculator" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="     from currency:" Style="{ThemeResource TitleTextBlockStyle}"/>
+                <TextBox Name="txtSum" TextAlignment="Right" Width="220" PlaceholderText="0.00" TextChanged="txtSum_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="converted:" Style="{ThemeResource TitleTextBlockStyle}"/>
+                <TextBox Name="tbConverted" TextAlignment="Right" Width="220" Text="0.00"/>
+            </StackPanel>
+
+            <TextBlock Margin="180,20,0,0" Text="from currency    ->      to currency" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <Border Margin="10" BorderThickness="5" BorderBrush="{ThemeResource TextBoxBackgroundThemeBrush}">
+                    <ListBox Name="lbxFromCurrency" Width="220" Height="200" ItemTemplate="{StaticResource CurrencyItemTemplate}" SelectionChanged="lbxFromCurrency_SelectionChanged"/>
+                </Border>
+                <Border Margin="10" BorderThickness="5" BorderBrush="{ThemeResource TextBoxBackgroundThemeBrush}">
+                    <ListBox Name="lbxToCurrency" Width="220" Height="200" ItemTemplate="{StaticResource CurrencyItemTemplate}" SelectionChanged="lbxToCurrency_SelectionChanged"/>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+
+</Page>
